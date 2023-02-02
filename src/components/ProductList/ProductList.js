@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { fetchProducts, setProducts } from '../../redux/action-creators/product-action-creators';
 import { useDispatch, useSelector } from "react-redux"
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 function ProductList() {
@@ -20,9 +20,9 @@ function ProductList() {
     return (
         <Container>
             <Row>
-                {products.map((item, index) => {
+                {products.length>0?products.map((item, index) => {
                     return <Col  key={item.id} lg={3} >
-                    <Link to={(item.id).toString()}>
+                    <NavLink to={(item.id).toString()} style={{textDecoration:"none",color:"black"}}>
                         <Card  style={{ width: '18rem',height:"580px",padding:"10px"}} className="mb-2">
                             <Card.Img style={{height:"400px"}} variant="center" src={item.image} />
                             <Card.Body>
@@ -34,10 +34,13 @@ function ProductList() {
                                
                             </Card.Body>
                         </Card>
-                        </Link>
+                        </NavLink>
 
                     </Col>
-                })}
+                })
+                :
+                <div>Loading....</div>
+                }
 
             </Row>
         </Container>

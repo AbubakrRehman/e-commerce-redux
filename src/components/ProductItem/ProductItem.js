@@ -21,6 +21,7 @@ function ProductselectProduct() {
 
     return (
         <Container >
+        {Object.keys(selectedProduct).length>0?
             <Row >
                 <Col lg={6} className='row justify-content-end'>
                     <Card style={{ width: '24rem', height: "600px", border: "2px solid black" }} >
@@ -41,7 +42,9 @@ function ProductselectProduct() {
                     </Card>
                 </Col>
             </Row>
-
+            :
+            <div>Loading....</div>
+        }
         </Container>
     )
 }
